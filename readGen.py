@@ -51,7 +51,8 @@ if __name__ == "__main__":
                        action="callback", callback=parser_open_file,
                        callback_args=('w',))
     parser.add_option('-c', '--coverage', dest='coverage', default=1,
-                       help="amount of read coverage", metavar="NUM", type=int)
+                       help="amount of read coverage", metavar="NUM",
+                       type=float)
 
     (options, args) = parser.parse_args(sys.argv[1:])
     if len(args) != 1:
