@@ -2,7 +2,7 @@
 
 import random
 import sys
-from optparse import OptionParser
+from optparse import OptionParser, OptionValueError
 
 def gen_reads(seq, l, coverage=1):
     num_reads = int((len(seq)/l) * coverage)
@@ -36,7 +36,7 @@ def parser_open_file(option, opt_str, value, parser, mode):
     try:
         f = open(value, mode)
     except IOError, e:
-         parser.error(str(e))
+         raise OptionValueError(str(e))
     setattr(parser.values, option.dest, f)
 
 if __name__ == "__main__":
