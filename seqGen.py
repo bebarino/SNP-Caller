@@ -13,7 +13,7 @@ def write_FASTA_file(seq, filename, title):
 
 def write_FASTA(seq, f, title, n=78):
     """Dumps a sequence 'seq' in FASTA file format to 'f'"""
-    f.write(">%s\n" % title)
+    f.write("> %s\n" % title)
     f.writelines(["%s\n" % seq[i:i+n-1] for i in xrange(0,len(seq),n-1)])
 
 def gen_seq(l, letters=['A', 'T', 'C', 'G']):
