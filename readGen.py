@@ -16,7 +16,7 @@ def gen_read(seq, l, e):
     read = seq[start:start+l]
     if random.random() < e:
         # Make an error
-        pos = random.randrange(l) 
+        pos = random.randrange(l)
         val = choice = read[pos]
         while val == choice:
             choice = random.choice(read)

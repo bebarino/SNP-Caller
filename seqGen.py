@@ -22,8 +22,10 @@ def gen_seq(l, letters=['A', 'T', 'C', 'G']):
 
 if __name__ == "__main__":
     parser = OptionParser(usage="%prog length [options]")
-    parser.add_option("-f", "--file", dest="file", help="write generated sequence to FILE", metavar="FILE")
-    parser.add_option("-t", "--title", dest="title", help="Title for sequence", metavar="TITLE", default="")
+    parser.add_option("-f", "--file", dest="file",
+                      help="write generated sequence to FILE", metavar="FILE")
+    parser.add_option("-t", "--title", dest="title", help="title for sequence",
+                      metavar="TITLE", default="")
 
     (options, args) = parser.parse_args(sys.argv[1:])
     if len(args) != 1:
