@@ -13,15 +13,12 @@ def gen_reads(seq, l, coverage=1, e=0):
 def gen_read(seq, l, e):
     """Generates a random read of length 'l' from the sequence 'seq'"""
     start = random.choice(xrange(len(seq)-l))
-    read = seq[start:start+l]
+    read = list(seq[start:start+l])
     if random.random() < e:
         # Make an error
         pos = random.randrange(l)
-        val = choice = read[pos]
-        while val == choice:
-            choice = random.choice(read)
-        read[pos] = choice
-    return (read, start)
+        read[pos] = random.choice(read)
+    return ("".join(read), start)
 
 def write_reads(rs, f):
     """Write reads 'rs' to a file 'f'"""
