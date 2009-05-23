@@ -29,19 +29,18 @@ def count_snps(reads, ref, snps={}):
             snp.total += 1
     return snps
 
-def consensus(snp):
+def consensus(snps):
     """Consensus snp calling method, returns "Unknown" if no majority"""
-    best = ('Unknown', 0)
-    for k, v in snp.iteritems():
-        p = float(v/snp.total)
-        if p > best[1]:
-            best = (k, v)
-    else:
-        if best[1] < 0.5:
-            best = ('Unknown', 0)
-    return "%s %s" % (snp.pos, best[0])
+    for snp in snps:
+        best = ('Unknown', 0)
+        for k, v in snp.iteritems():
+            p = float(v)/snp.total
+            if p > best[1]:
+                best = (k, p)
+            if best[1] < 0.5:
+                continue
+            yield "%s %s" % (snp.pos, best[0])
 
 if __name__ == "__main__":
     snps = count_snps(sys.stdin, parse_seq(open(sys.argv[1], 'r')))
-    print '\n'.join("%s" % consensus(snp) for snp in snps.values()
-                    if len(snp) > 0)
+    print '\n'.join(consensus(snps.values()))
