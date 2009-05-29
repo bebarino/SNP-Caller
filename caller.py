@@ -37,9 +37,9 @@ def consensus(snps):
             p = float(v)/snp.total
             if p > best[1]:
                 best = (k, p)
-            if best[1] < 0.5:
-                continue
-            yield "%s %s" % (snp.pos, best[0])
+            if p > 0.5:
+                yield "%s %s" % (snp.pos, best[0])
+                break
 
 if __name__ == "__main__":
     snps = count_snps(sys.stdin, parse_seq(open(sys.argv[1], 'r')))
